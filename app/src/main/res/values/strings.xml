@@ -22,4 +22,29 @@
     <string name="start_btn">НАЧАТЬ РАБОТУ</string>
 
     <string name="error_sign_in">Sign In Error</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_log_in">Sign in</string>
+    <string name="btn_link_to_register">Sign up</string>
+    <string name="text_register">Don\'t have an account?</string>
+    <string name="reset_password">Forgot Password?</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+
+    <string-array name="group_list">
+        <item>Номер группы</item>
+        <item>11–601</item>
+        <item>11–602</item>
+        <item>11–603</item>
+        <item>11–604</item>
+        <item>11–605</item>
+        <item>11–606</item>
+        <item>11–607</item>
+        <item>11–608</item>
+    </string-array>
+
+    <integer name="card_flip_duration_full">1000</integer>
+    <integer name="card_flip_duration_half">500</integer>
+
 </resources>

@@ -115,7 +115,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (nextBtn.getText() == getResources().getString(R.string.start_btn)) {
-
+                    startActivity(SignInAndSignUpActivity.makeIntent(StartActivity.this));
                 }
                 sliderViewPager.setCurrentItem(currentPage + 1);
             }
