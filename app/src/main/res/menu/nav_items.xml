@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_group"
+        android:icon="@drawable/ic_people_outline_black_24dp"
+        android:title="@string/nav_group" />
+    <item
+        android:id="@+id/nav_study"
+        android:icon="@drawable/ic_school_black_24dp"
+        android:title="@string/nav_study" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_person_outline_black_24dp"
+        android:title="@string/nav_profile" />
+</menu>

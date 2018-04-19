@@ -27,10 +27,11 @@
     <string name="btn_log_in">Sign in</string>
     <string name="btn_link_to_register">Sign up</string>
     <string name="text_register">Don\'t have an account?</string>
-    <string name="reset_password">Forgot Password?</string>
+    <string name="btn_link_to_reset_password">Forgot Password?</string>
     <string name="btn_sign_up">Sign Up</string>
     <string name="hint_first_name">First Name</string>
     <string name="hint_last_name">Last Name</string>
+    <string name="toolbar_title">Toolbar Title</string>
 
     <string-array name="group_list">
         <item>Номер группы</item>
@@ -46,5 +47,18 @@
 
     <integer name="card_flip_duration_full">1000</integer>
     <integer name="card_flip_duration_half">500</integer>
+
+    <string name="error_email">Enter email address!</string>
+    <string name="error_pass">Enter password!</string>
+    <string name="error_pass_length">Password too short, enter minimum 6 characters!</string>
+    <string name="status_registration_succeeded">Registration completed successfully</string>
+    <string name="status_log_in_succeeded">Sign In Success</string>
+    <string name="btn_to_reset_password">Reset Password</string>
+    <string name="reset_password_complete_msg">Password reset email was send. Check your email please!</string>
+    <string name="error">Error</string>
+    <string name="reset_your_password">Reset your password</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_study">Study</string>
+    <string name="nav_group">Group</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.itis.android.mobilelearningapp.activity;
+package com.itis.android.mobilelearningapp.activities;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.itis.android.mobilelearningapp.activity;
+package com.itis.android.mobilelearningapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -31,13 +31,9 @@ public class SplashActivity extends AppCompatActivity {
         textView.startAnimation(animation);
         imageView.startAnimation(animation);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, StartActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            startActivity(StartActivity.makeIntent(SplashActivity.this));
+            finish();
         }, 2 * 1000);
     }
 

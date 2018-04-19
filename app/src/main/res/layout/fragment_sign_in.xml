@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/relative_layout_container_sign_in"
+    android:id="@+id/relative_layout_fragment_sign_in"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="?android:actionBarSize"
     android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/linear_layout_form_sign_in"
+        android:id="@+id/linear_layout_container_sign_in"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_email"
@@ -35,38 +36,35 @@
             app:passwordToggleEnabled="true">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
+        <Button
+            android:id="@+id/btn_to_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/accent"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/btn_log_in"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/btn_link_to_reset_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_link_to_reset_password"
+            android:textColor="@color/colorGrey"
+            android:textSize="16sp" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_reset_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/linear_layout_form_sign_in"
-        android:layout_marginTop="204dp"
-        android:text="@string/reset_password"
-        android:textColor="@color/colorGrey"
-        android:textSize="16sp" />
-
-    <Button
-        android:id="@+id/btn_log_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="154dp"
-        android:background="@color/accent"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:text="@string/btn_log_in"
-        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -85,7 +83,7 @@
             android:textAllCaps="true" />
 
         <TextView
-            android:id="@+id/btn_to_sign_up"
+            android:id="@+id/btn_link_to_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

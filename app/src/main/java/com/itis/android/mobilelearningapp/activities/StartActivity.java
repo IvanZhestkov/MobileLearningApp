@@ -1,5 +1,7 @@
-package com.itis.android.mobilelearningapp.activity;
+package com.itis.android.mobilelearningapp.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +28,10 @@ public class StartActivity extends AppCompatActivity {
     private Button backBtn;
 
     private int currentPage;
+
+    public static Intent makeIntent(Context context) {
+        return new Intent(context, StartActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +107,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void initFields() {
-        container = findViewById(R.id.container);
+        container = findViewById(R.id.container_activity_start);
         sliderViewPager = findViewById(R.id.view_pager);
         dotsLayout = findViewById(R.id.dots_layout);
         backBtn = findViewById(R.id.btn_back);
@@ -111,22 +117,14 @@ public class StartActivity extends AppCompatActivity {
     private void initClickListeners() {
         sliderViewPager.addOnPageChangeListener(viewListener);
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (nextBtn.getText() == getResources().getString(R.string.start_btn)) {
-                    startActivity(SignInAndSignUpActivity.makeIntent(StartActivity.this));
-                }
-                sliderViewPager.setCurrentItem(currentPage + 1);
+        nextBtn.setOnClickListener(view -> {
+            if (nextBtn.getText() == getResources().getString(R.string.start_btn)) {
+                startActivity(SignInAndSignUpActivity.makeIntent(StartActivity.this));
             }
+            sliderViewPager.setCurrentItem(currentPage + 1);
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sliderViewPager.setCurrentItem(currentPage - 1);
-            }
-        });
+        backBtn.setOnClickListener(view -> sliderViewPager.setCurrentItem(currentPage - 1));
     }
 }
 

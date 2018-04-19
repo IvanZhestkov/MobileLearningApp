@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "181237439880",
+    "firebase_url": "https://mobilelearningapp-6d4dc.firebaseio.com",
+    "project_id": "mobilelearningapp-6d4dc",
+    "storage_bucket": "mobilelearningapp-6d4dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181237439880:android:2ff85cbefa9a19f8",
+        "android_client_info": {
+          "package_name": "com.itis.android.mobilelearningapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181237439880-kldgcr56l9tvu1nkmfmme67kv2mv4h6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.itis.android.mobilelearningapp",
+            "certificate_hash": "a3009c9f1cac7b48f85016b4db13d64ee11219ad"
+          }
+        },
+        {
+          "client_id": "181237439880-rqo1tgsbfg0sp621t7fvqnj5at7nr08q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoik3-je6M3X3L4csYAjb3QA8oOShOaGw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181237439880-rqo1tgsbfg0sp621t7fvqnj5at7nr08q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

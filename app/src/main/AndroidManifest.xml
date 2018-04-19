@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:theme="@style/AppSplashAndStartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.StartActivity"
+            android:name=".activities.StartActivity"
             android:theme="@style/AppSplashAndStartTheme" />
-        <activity android:name=".activity.SignInAndSignUpActivity"></activity>
+        <activity
+            android:name=".activities.SignInAndSignUpActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity android:name=".activities.MainActivity"></activity>
     </application>
 
 </manifest>
