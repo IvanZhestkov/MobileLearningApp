@@ -94,12 +94,8 @@ public class RestorePasswordFragment extends Fragment {
     private void initToolbar() {
         FragmentHostActivity activity = (FragmentHostActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
             TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
             mTitle.setText("");
         }

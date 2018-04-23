@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/relative_layout_fragment_sign_in"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="?android:actionBarSize"
+    android:layout_marginTop="16dp"
     android:padding="16dp">
 
     <LinearLayout
         android:id="@+id/linear_layout_container_sign_in"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_email_outline_black_24dp"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="9dp"
+            android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword" />
+
+        <!--<android.support.design.widget.TextInputLayout
             android:id="@+id/ti_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -41,16 +55,16 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>-->
 
         <Button
             android:id="@+id/btn_to_sign_in"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/accent"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_style"
+            android:drawableEnd="@drawable/ic_send_black_24dp"
             android:text="@string/btn_log_in"
             android:textColor="@android:color/white" />
 
@@ -64,6 +78,7 @@
             android:textColor="@color/colorGrey"
             android:textSize="16sp" />
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -71,8 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:gravity="bottom|center"
+        android:layout_marginBottom="17dp"
         android:orientation="horizontal">
 
         <TextView
@@ -95,3 +109,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+

@@ -23,8 +23,12 @@
             android:theme="@style/AppSplashAndStartTheme" />
         <activity
             android:name=".activities.SignInAndSignUpActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
-        <activity android:name=".activities.MainActivity"></activity>
+            android:windowSoftInputMode="stateVisible|adjustResize">
+
+        </activity>
+        <activity android:name=".activities.MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

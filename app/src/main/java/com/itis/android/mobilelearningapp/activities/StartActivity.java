@@ -30,7 +30,10 @@ public class StartActivity extends AppCompatActivity {
     private int currentPage;
 
     public static Intent makeIntent(Context context) {
-        return new Intent(context, StartActivity.class);
+        Intent intent = new Intent(context, StartActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
     }
 
     @Override

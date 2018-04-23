@@ -13,4 +13,6 @@
     <color name="colorGrey">#757575</color>
     <color name="colorBlue">#639fff</color>
     <color name="colorWhiteTransparent">#80FFFFFF</color>
+
+    <color name="menu_item">#000000</color>
 </resources>

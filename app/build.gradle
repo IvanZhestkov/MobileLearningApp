@@ -35,12 +35,16 @@ dependencies {
 
     // Firebase
     implementation "com.google.firebase:firebase-auth:${firebase}"
+    implementation "com.google.firebase:firebase-database:${firebase}"
 
     //Calligraphy
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     //TutorialView
     implementation 'com.github.msayan:tutorial-view:v1.0.6'
+
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'

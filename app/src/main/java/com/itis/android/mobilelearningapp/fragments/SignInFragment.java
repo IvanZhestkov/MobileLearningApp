@@ -33,7 +33,7 @@ import com.itis.android.mobilelearningapp.utils.SoftKeyboard;
 
 public class SignInFragment extends Fragment {
 
-    private TextInputLayout tiEmail, tiPassword;
+    //private TextInputLayout tiEmail, tiPassword;
     private EditText edtEmailField, edtPasswordField;
     private Button btnSignIn;
     private View container;
@@ -60,7 +60,6 @@ public class SignInFragment extends Fragment {
         initToolbar();
         initFields(view);
 
-        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
         setHasOptionsMenu(true);
@@ -72,7 +71,7 @@ public class SignInFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initTextListeners();
+        //initTextListeners();
         initClickListeners();
     }
 
@@ -95,8 +94,8 @@ public class SignInFragment extends Fragment {
     private void initFields(View view) {
         progressDialog = new ProgressDialog(getActivity());
         container = view.findViewById(R.id.linear_layout_container_sign_in);
-        tiEmail = view.findViewById(R.id.ti_email);
-        tiPassword = view.findViewById(R.id.ti_password);
+        /*tiEmail = view.findViewById(R.id.ti_email);
+        tiPassword = view.findViewById(R.id.ti_password);*/
         edtEmailField = view.findViewById(R.id.edt_email);
         edtPasswordField = view.findViewById(R.id.edt_password);
         btnLinkSignUp = view.findViewById(R.id.btn_link_to_sign_up);
@@ -104,7 +103,7 @@ public class SignInFragment extends Fragment {
         btnSignIn = view.findViewById(R.id.btn_to_sign_in);
     }
 
-    private void initTextListeners() {
+    /*private void initTextListeners() {
         edtEmailField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -137,7 +136,7 @@ public class SignInFragment extends Fragment {
                 tiPassword.setError(null);
             }
         });
-    }
+    }*/
 
     private void initClickListeners() {
         btnLinkSignUp.setOnClickListener(view1 -> getFragmentManager()
@@ -164,19 +163,19 @@ public class SignInFragment extends Fragment {
 
         if (TextUtils.isEmpty(email)) {
             // todo validation
-            tiEmail.setError(getString(R.string.error_email));
+            edtEmailField.setError(getString(R.string.error_email));
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
             // todo validation
-            tiPassword.setError(getString(R.string.error_pass));
+            edtPasswordField.setError(getString(R.string.error_pass));
             return;
         }
 
         if (password.length() < 6) {
             // todo validation
-            tiPassword.setError(getString(R.string.error_pass_length));
+            edtPasswordField.setError(getString(R.string.error_pass_length));
             return;
         }
 
@@ -206,12 +205,8 @@ public class SignInFragment extends Fragment {
     private void initToolbar() {
         FragmentHostActivity activity = (FragmentHostActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
             TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
             mTitle.setText("Войти");
         }

@@ -26,6 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.itis.android.mobilelearningapp.R;
 import com.itis.android.mobilelearningapp.activities.FragmentHostActivity;
 import com.itis.android.mobilelearningapp.utils.SoftKeyboard;
@@ -35,11 +38,13 @@ public class SignUpFragment extends Fragment {
     private Spinner spinner;
 
     private TextInputLayout tiFirstName, tiLastName, tiEmail, tiPassword;
+    //todo add password for
     private EditText edtFirstNameField, edtLastNameField, edtEmailField, edtPasswordField;
     private Button btnSignUp;
     private View container;
 
     private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
 
     private ProgressDialog progressDialog;
 
@@ -59,8 +64,8 @@ public class SignUpFragment extends Fragment {
         initToolbar();
         initFields(view);
 
-        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
         setHasOptionsMenu(true);
 
@@ -156,6 +161,8 @@ public class SignUpFragment extends Fragment {
     }
 
     private void startRegister() {
+        String firstName = edtFirstNameField.getText().toString().trim();
+        String lastName = edtLastNameField.getText().toString().trim();
         String email = edtEmailField.getText().toString().trim();
         String password = edtPasswordField.getText().toString().trim();
         if (TextUtils.isEmpty(email)) {
@@ -186,20 +193,26 @@ public class SignUpFragment extends Fragment {
                         progressDialog.dismiss();
                         Snackbar.make(container, "Authentication failed.", Snackbar.LENGTH_SHORT).show();
                     } else {
+                        String userId = auth.getCurrentUser().getUid();
+                        DatabaseReference currentUserDb = mDatabase.child(userId);
+                        currentUserDb.child("firstName").setValue(firstName);
+                        currentUserDb.child("lastName").setValue(lastName);
+
                         progressDialog.dismiss();
                         Toast.makeText(getActivity(), R.string.status_registration_succeeded, Toast.LENGTH_LONG).show();
                         onBackPressed();
                     }
                 });
     }
+
     // todo вынесети в отдельный класс
     private void initToolbar() {
         FragmentHostActivity activity = (FragmentHostActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        activity.setSupportActionBar(toolbar);
+        //todo delete commentary in the future
+        //activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("");
             TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
             mTitle.setText("Зарегистрироваться");
         }

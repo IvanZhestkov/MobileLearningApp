@@ -3,6 +3,7 @@ package com.itis.android.mobilelearningapp.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,7 +18,7 @@ public abstract class FragmentHostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResId());
 
-        toolbar = findViewById(R.id.toolbar);
+        initToolbar();
 
         FragmentManager fm = getFragmentManager();
         if (fm.findFragmentById(getContainerId()) == null) {
@@ -39,5 +40,16 @@ public abstract class FragmentHostActivity extends AppCompatActivity {
 
     public Toolbar getToolbar() {
         return toolbar;
+    }
+
+    private void initToolbar() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setTitle("");
+        }
     }
 }
