@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hometasks_fragment_profile"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.GroupFragment">
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="Рейтинг"
+        android:textAllCaps="true"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Group Fragment" />
+        android:layout_below="@+id/tv_title" />
 
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/pg_fragment_study"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+
+</RelativeLayout>

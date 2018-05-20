@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.itis.android.mobilelearningapp.R;
+import com.itis.android.mobilelearningapp.activities.main.MainActivity;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

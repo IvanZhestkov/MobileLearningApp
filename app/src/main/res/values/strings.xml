@@ -22,15 +22,15 @@
     <string name="start_btn">НАЧАТЬ РАБОТУ</string>
 
     <string name="error_sign_in">Sign In Error</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="btn_log_in">Sign in</string>
-    <string name="btn_link_to_register">Sign up</string>
-    <string name="text_register">Don\'t have an account?</string>
-    <string name="btn_link_to_reset_password">Forgot Password?</string>
-    <string name="btn_sign_up">Sign Up</string>
-    <string name="hint_first_name">First Name</string>
-    <string name="hint_last_name">Last Name</string>
+    <string name="hint_email">Почта</string>
+    <string name="hint_password">Пароль</string>
+    <string name="btn_log_in">Войти</string>
+    <string name="btn_link_to_register">Зарегистрироваться</string>
+    <string name="text_register">Нет аккаунта?</string>
+    <string name="btn_link_to_reset_password">Забыли пароль?</string>
+    <string name="btn_sign_up">Зарегистрироваться</string>
+    <string name="hint_first_name">Имя</string>
+    <string name="hint_last_name">Фамилия</string>
     <string name="toolbar_title">Toolbar Title</string>
 
     <string-array name="group_list">
@@ -60,10 +60,21 @@
     <string name="nav_profile">Profile</string>
     <string name="nav_study">Study</string>
     <string name="nav_group">Group</string>
-    <string name="edit_name">Edit name</string>
-    <string name="log_out">Log out</string>
+    <string name="edit_name">Редактировать</string>
+    <string name="log_out">Выйти</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_statistics">my statistics</string>
+    <string name="title_activity_homework">HomeworkActivity</string>
+    <string name="add">Добавить</string>
+    <string name="title_activity_add_homework">AddHomeworkActivity</string>
+    <string name="confirm">Confirm</string>
+    <string name="enter_name_subj">Enter name subject</string>
+    <string name="title_activity_details_homework">DetailsHomeworkActivity</string>
+
+    <string name="title_description">Description:</string>
+    <string name="title_activity_finish_homework">FinishHomeworkActivity</string>
+    <string name="save">Сохранить</string>
 
 </resources>

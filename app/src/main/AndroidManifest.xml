@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.itis.android.mobilelearningapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,16 +21,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.StartActivity"
+            android:name=".activities.instruction.StartActivity"
             android:theme="@style/AppSplashAndStartTheme" />
         <activity
-            android:name=".activities.SignInAndSignUpActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize">
-
-        </activity>
-        <activity android:name=".activities.MainActivity">
-
-        </activity>
+            android:name=".activities.auth.SignInAndSignUpActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".activities.main.MainActivity" />
+        <activity android:name=".activities.main.EditProfileActivity" />
+        <activity
+            android:name=".activities.HomeworkActivity"
+            android:label="@string/title_activity_homework"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.AddHomeworkActivity"
+            android:label="@string/title_activity_add_homework"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.AddSubjectActivity" />
+        <activity
+            android:name=".activities.DetailsHomeworkActivity"
+            android:label="@string/title_activity_details_homework"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.FinishHomeworkActivity"
+            android:label="@string/title_activity_finish_homework"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -15,4 +15,7 @@
     <color name="colorWhiteTransparent">#80FFFFFF</color>
 
     <color name="menu_item">#000000</color>
+
+    <color name="tabTextColor">#2D2D2D</color>
+    <color name="tabIndicatorColor">#FFF</color>
 </resources>

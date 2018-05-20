@@ -1,8 +1,8 @@
 package com.itis.android.mobilelearningapp.activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +20,7 @@ public abstract class FragmentHostActivity extends AppCompatActivity {
 
         initToolbar();
 
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         if (fm.findFragmentById(getContainerId()) == null) {
             fm.beginTransaction()
                     .add(getContainerId(), getFragment())
