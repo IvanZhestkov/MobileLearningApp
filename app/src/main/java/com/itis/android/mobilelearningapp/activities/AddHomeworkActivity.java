@@ -96,19 +96,19 @@ public class AddHomeworkActivity extends AppCompatActivity {
         boolean isError = false;
 
         if (TextUtils.isEmpty(title)) {
-            tiTitle.setError("Enter title");
+            tiTitle.setError("Введите название");
             isError = true;
         }
         if (TextUtils.isEmpty(startDate)) {
-            tiStartDate.setError("Enter title");
+            tiStartDate.setError("Введите начальную дату");
             isError = true;
         }
         if (TextUtils.isEmpty(endDate)) {
-            tiEndDate.setError("Enter title");
+            tiEndDate.setError("Введите конечную дату");
             isError = true;
         }
         if (TextUtils.isEmpty(desc)) {
-            tiDesc.setError("Enter title");
+            tiDesc.setError("Введите описание");
             isError = true;
         }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background_color">#6f84fc</color>
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#C5CAE9</color>
@@ -15,6 +16,7 @@
     <color name="colorWhiteTransparent">#80FFFFFF</color>
 
     <color name="menu_item">#000000</color>
+    <color name="dots_color">#4f63cc</color>
 
     <color name="tabTextColor">#2D2D2D</color>
     <color name="tabIndicatorColor">#FFF</color>

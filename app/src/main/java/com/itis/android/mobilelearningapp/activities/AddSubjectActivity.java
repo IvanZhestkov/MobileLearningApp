@@ -89,7 +89,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
                                 if (user.getGroupId().equals(MainActivity.groupId)) {
                                     String subProgressId = mDatabaseSubjectProgress.push().getKey();
-                                    SubjectProgress subjectProgress = new SubjectProgress(subProgressId, userId, subjectId, 0);
+                                    SubjectProgress subjectProgress = new SubjectProgress(subProgressId, userId, subjectId, 0, 0);
                                     mDatabaseSubjectProgress.child(MainActivity.groupId).child(subjectId)
                                             .child(subProgressId).setValue(subjectProgress);
                                 }
@@ -143,11 +143,5 @@ public class AddSubjectActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setTitle("Добавить предмет");
         }
-    }
-
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 }

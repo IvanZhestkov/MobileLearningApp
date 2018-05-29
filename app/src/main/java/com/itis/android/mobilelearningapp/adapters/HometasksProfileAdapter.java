@@ -62,9 +62,12 @@ public class HometasksProfileAdapter extends ExpandableRecyclerAdapter<TitlePare
 
         SubjectProgress subjectProgress = titleChild.getSubjectProgress();
 
-        int progress = subjectProgress.getRate();
+        int progressHw = subjectProgress.getRate();
+        int progressSubject = subjectProgress.getRateSubject();
 
-        titleChildViewHolder.progressBar.setProgress(progress);
-        titleChildViewHolder.rate.setText(String.valueOf(progress) + "%");
+        titleChildViewHolder.pbSubj.setProgress(progressSubject);
+        titleChildViewHolder.rateSubject.setText(String.valueOf(progressSubject) + "%");
+        titleChildViewHolder.pbHw.setProgress(progressHw);
+        titleChildViewHolder.rateHw.setText(String.valueOf(progressHw) + "%");
     }
 }

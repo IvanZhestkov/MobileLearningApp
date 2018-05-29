@@ -10,14 +10,17 @@ public class SubjectProgress {
 
     private int rate;
 
+    private int rateSubject;
+
     public SubjectProgress() {
     }
 
-    public SubjectProgress(String id, String userId, String subjectId, int rate) {
+    public SubjectProgress(String id, String userId, String subjectId, int rate, int rateSubject) {
         this.id = id;
         this.userId = userId;
         this.subjectId = subjectId;
         this.rate = rate;
+        this.rateSubject = rateSubject;
     }
 
     public String getId() {
@@ -50,5 +53,13 @@ public class SubjectProgress {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public int getRateSubject() {
+        return rateSubject;
+    }
+
+    public void setRateSubject(int rateSubject) {
+        this.rateSubject = rateSubject;
     }
 }

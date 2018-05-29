@@ -14,7 +14,5 @@ public class TitleParentViewHolder extends ParentViewHolder {
     public TitleParentViewHolder(View itemView) {
         super(itemView);
         textView = itemView.findViewById(R.id.tv_parent_title_hfp);
-
-
     }
 }

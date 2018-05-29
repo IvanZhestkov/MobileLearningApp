@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,10 +27,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.itis.android.mobilelearningapp.R;
 import com.itis.android.mobilelearningapp.activities.instruction.StartActivity;
+import com.itis.android.mobilelearningapp.fragments.HometasksFragment;
 import com.itis.android.mobilelearningapp.fragments.main.GroupFragment;
 import com.itis.android.mobilelearningapp.fragments.main.ProfileFragment;
 import com.itis.android.mobilelearningapp.fragments.main.StudyFragment;
 import com.itis.android.mobilelearningapp.models.User;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private GroupFragment groupFragment;
     private StudyFragment studyFragment;
-    private ProfileFragment profileFragment;
+    private HometasksFragment profileFragment;
 
     private Toolbar toolbarProfile;
 
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         if (user == null) {
             // Not signed in, launch the Sign In activity
             startActivity(StartActivity.makeIntent(this));
+            finish();
             return;
         }
 
@@ -96,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         if (user != null) {
-
             mDatabaseUsers.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -116,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //todo change color menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_fragment_profile, menu);
@@ -148,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     private void setNavigation() {
         groupFragment = GroupFragment.newInstance();
         studyFragment = StudyFragment.newInstance();
-        profileFragment = ProfileFragment.newInstance();
+        profileFragment = HometasksFragment.newInstance();
 
         setFragment(groupFragment);
 

@@ -3,12 +3,9 @@ package com.itis.android.mobilelearningapp.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,29 +24,33 @@ import com.itis.android.mobilelearningapp.activities.main.MainActivity;
 import com.itis.android.mobilelearningapp.models.Homework;
 import com.itis.android.mobilelearningapp.models.SubjectProgress;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import static com.itis.android.mobilelearningapp.utils.Constants.HOMEWORK_ITEM;
 import static com.itis.android.mobilelearningapp.utils.Constants.RATE;
 import static com.itis.android.mobilelearningapp.utils.Constants.SUBJECT_ID;
+import static com.itis.android.mobilelearningapp.utils.Constants.SUBJECT_NAME;
 
 public class FinishHomeworkActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+
+    private static final String COUNT_HWS = "countHws";
 
     private TextView tvTitle, tvStartDate, tvEndDate, tvDescription, tvRate;
     private SeekBar seekBar;
     private Button btnSave;
+    private CheckBox checkBox;
 
     private Toolbar toolbar;
 
     private DatabaseReference mDatabaseHomeworks;
     private DatabaseReference mDatabaseSubProgress;
 
-    public static Intent makeInflatedIntent(Context context, Homework homework, String subjectId, int rate) {
+    public static Intent makeInflatedIntent(Context context, Homework homework,
+                                            String subjectId, int rate, String subjectName, int count) {
         Intent intent = makeIntent(context);
         intent.putExtra(HOMEWORK_ITEM, homework);
         intent.putExtra(SUBJECT_ID, subjectId);
         intent.putExtra(RATE, rate);
+        intent.putExtra(SUBJECT_NAME, subjectName);
+        intent.putExtra(COUNT_HWS, count);
         return intent;
     }
 
@@ -94,7 +95,8 @@ public class FinishHomeworkActivity extends AppCompatActivity implements SeekBar
         tvDescription = findViewById(R.id.tv_description_details_hw);
         seekBar = findViewById(R.id.seekBar);
         btnSave = findViewById(R.id.btn_save_data);
-        tvRate = findViewById(R.id.tv_rate);
+        tvRate = findViewById(R.id.tv_rate2);
+        checkBox = findViewById(R.id.checkBox);
     }
 
     private void updateUi() {
@@ -114,12 +116,13 @@ public class FinishHomeworkActivity extends AppCompatActivity implements SeekBar
 
     private void initToolbar() {
         toolbar = findViewById(R.id.toolbar_activity_finish_homework);
+        String subjectName = getIntent().getStringExtra(SUBJECT_NAME);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setTitle("Details");
+            actionBar.setTitle(subjectName);
         }
     }
 
@@ -139,6 +142,7 @@ public class FinishHomeworkActivity extends AppCompatActivity implements SeekBar
 
     @Override
     public void onClick(View view) {
+        int countHws = getIntent().getIntExtra(COUNT_HWS, 1);
         String subjectId = getIntent().getStringExtra(SUBJECT_ID);
         mDatabaseSubProgress.child(subjectId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -150,6 +154,12 @@ public class FinishHomeworkActivity extends AppCompatActivity implements SeekBar
                                 String rate = tvRate.getText().toString();
                                 int ratee = Integer.parseInt(rate.substring(0, rate.length() - 1));
                                 subjectProgress.setRate(ratee);
+                                if (checkBox.isChecked()) {
+                                    int result = (subjectProgress.getRateSubject() + ratee) / countHws;
+                                    if (result <= 100) {
+                                        subjectProgress.setRateSubject(result);
+                                    }
+                                }
                                 mDatabaseSubProgress.child(subjectId)
                                         .child(subjectProgress.getId()).setValue(subjectProgress);
                                 onBackPressed();

@@ -2,6 +2,8 @@ package com.itis.android.mobilelearningapp.models;
 
 import com.itis.android.mobilelearningapp.utils.UserRole;
 
+import java.util.Comparator;
+
 public class User {
 
     private String id;
@@ -14,15 +16,18 @@ public class User {
 
     private UserRole role;
 
+    private int rate;
+
     public User() {
     }
 
-    public User(String id, String firstName, String lastName, String groupId, UserRole role) {
+    public User(String id, String firstName, String lastName, String groupId, UserRole role, int rate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.groupId = groupId;
         this.role = role;
+        this.rate = rate;
     }
 
     public String getId() {
@@ -64,4 +69,14 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public static final Comparator<User> COMPARE_BY_RATE = (user, user2) -> user.getRate() - user2.getRate();
 }

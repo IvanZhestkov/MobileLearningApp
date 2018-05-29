@@ -210,21 +210,18 @@ public class SignUpFragment extends Fragment {
         String email = edtEmailField.getText().toString().trim();
         String password = edtPasswordField.getText().toString().trim();
         if (group.equals("Номер группы")) {
-            Toast.makeText(getActivity(), "Enter your group", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Введите группу", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(lastName)) {
-            // todo validation
-            tiLastName.setError("Введите имя");
+            tiLastName.setError("Введите фамилию");
             return;
         }
         if (TextUtils.isEmpty(firstName)) {
-            // todo validation
-            tiFirstName.setError("Введите фамилию");
+            tiFirstName.setError("Введите имя");
             return;
         }
         if (TextUtils.isEmpty(email)) {
-            // todo validation
             tiEmail.setError(getString(R.string.error_email));
             return;
         }
@@ -264,16 +261,9 @@ public class SignUpFragment extends Fragment {
 
         if (group != null) {
             String userId = auth.getCurrentUser().getUid();
-            User user = new User(userId, firstName, lastName, group.getId(), UserRole.ROLE_USER);
-
-            /*if (group.getUsers() == null) {
-                group.setUsers(new ArrayList<>());
-            }
-
-            group.getUsers().add(user);*/
+            User user = new User(userId, firstName, lastName, group.getId(), UserRole.ROLE_USER, 0);
 
             mDatabaseUsers.child(userId).setValue(user);
-            //mDatabaseGroups.child(group.getId()).setValue(group);
             mDatabaseSubjects.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -282,7 +272,7 @@ public class SignUpFragment extends Fragment {
                         if (subject != null && subject.getGroupId().equals(group.getId())) {
                             String subjectId = subject.getId();
                             String subProgressId = mDatabaseSubjectProgress.push().getKey();
-                            SubjectProgress subjectProgress = new SubjectProgress(subProgressId, userId, subjectId, 0);
+                            SubjectProgress subjectProgress = new SubjectProgress(subProgressId, userId, subjectId, 0, 0);
                             mDatabaseSubjectProgress.child(group.getId()).child(subjectId)
                                     .child(subProgressId).setValue(subjectProgress);
                         }
@@ -310,8 +300,6 @@ public class SignUpFragment extends Fragment {
     private void initToolbar() {
         FragmentHostActivity activity = (FragmentHostActivity) getActivity();
         Toolbar toolbar = activity.getToolbar();
-        //todo delete commentary in the future
-        //activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
             TextView mTitle = toolbar.findViewById(R.id.toolbar_title);

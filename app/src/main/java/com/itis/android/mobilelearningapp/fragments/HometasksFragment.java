@@ -1,16 +1,17 @@
 package com.itis.android.mobilelearningapp.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.LongDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
@@ -28,31 +29,26 @@ import com.itis.android.mobilelearningapp.models.Subject;
 import com.itis.android.mobilelearningapp.models.SubjectProgress;
 import com.itis.android.mobilelearningapp.models.TitleChild;
 import com.itis.android.mobilelearningapp.models.TitleParent;
+import com.itis.android.mobilelearningapp.models.User;
 import com.itis.android.mobilelearningapp.viewholders.OnItemClickListener;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class HometasksFragment extends Fragment implements OnItemClickListener {
 
     private RecyclerView recyclerView;
 
+    private TextView tvAverageRate;
+
     private List<TitleParent> titleParents;
-    private List<SubjectProgress> subjectProgresses;
 
     private DatabaseReference mDatabaseSubjects;
     private DatabaseReference mDatabaseSubProgress;
     private DatabaseReference mDatabaseHomeworks;
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        ((HometasksProfileAdapter) recyclerView.getAdapter()).onSaveInstanceState(outState);
-    }
+    private DatabaseReference mDatabaseUsers;
 
     public static HometasksFragment newInstance() {
         Bundle args = new Bundle();
@@ -67,14 +63,17 @@ public class HometasksFragment extends Fragment implements OnItemClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hometasks_fragment_profile, container, false);
 
-        titleParents = new ArrayList<>();
-        subjectProgresses = new ArrayList<>();
+        initToolbar();
 
-        mDatabaseSubjects = FirebaseDatabase.getInstance().getReference("Subjects");
-        mDatabaseSubProgress = FirebaseDatabase.getInstance().getReference("SubjectProgress");
-        mDatabaseHomeworks = FirebaseDatabase.getInstance().getReference("Homeworks");
+        titleParents = new ArrayList<>();
 
         recyclerView = view.findViewById(R.id.rv_hometasks);
+        tvAverageRate = view.findViewById(R.id.tv_average_rate);
+
+        mDatabaseSubjects = FirebaseDatabase.getInstance().getReference("Subjects");
+        mDatabaseSubProgress = FirebaseDatabase.getInstance().getReference("SubjectProgress").child(MainActivity.groupId);
+        mDatabaseHomeworks = FirebaseDatabase.getInstance().getReference("Homeworks");
+        mDatabaseUsers = FirebaseDatabase.getInstance().getReference("Users").child(MainActivity.userr.getId());
 
         return view;
     }
@@ -108,6 +107,37 @@ public class HometasksFragment extends Fragment implements OnItemClickListener {
                 adapter.setParentAndIconExpandOnClick(true);
 
                 recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), databaseError.getDetails(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        mDatabaseSubProgress.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int rate = 0;
+                int count = 0;
+                for (DataSnapshot subjectSnapshot : dataSnapshot.getChildren()) {
+                    count++;
+                    for (DataSnapshot subjProgressSnapshot : subjectSnapshot.getChildren()) {
+                        SubjectProgress subjectProgress = subjProgressSnapshot.getValue(SubjectProgress.class);
+                        if (subjectProgress != null && subjectProgress.getUserId().equals(MainActivity.userr.getId())) {
+                            Log.d("user id", MainActivity.userr.getId());
+                            rate += subjectProgress.getRateSubject();
+                        }
+                    }
+
+                }
+                User user = MainActivity.userr;
+                if (user != null && count != 0) {
+                    user.setRate(rate / count);
+                    mDatabaseUsers.setValue(user);
+                    tvAverageRate.setText(String.valueOf(rate / count));
+                }
             }
 
             @Override
@@ -117,11 +147,19 @@ public class HometasksFragment extends Fragment implements OnItemClickListener {
         });
     }
 
+    private void initToolbar() {
+        MainActivity activity = (MainActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.show();
+        }
+    }
+
     private List<ParentObject> initData() {
         List<ParentObject> parentObjects = new ArrayList<>();
         for (TitleParent titleParent : titleParents) {
             List<Object> childList = new ArrayList<>();
-            mDatabaseSubProgress.child(MainActivity.groupId).child(titleParent.getSubject().getId())
+            mDatabaseSubProgress.child(titleParent.getSubject().getId())
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -129,8 +167,8 @@ public class HometasksFragment extends Fragment implements OnItemClickListener {
                                 SubjectProgress subjectProgress = subProgressSnapshot.getValue(SubjectProgress.class);
                                 if (subjectProgress.getUserId().equals(MainActivity.userr.getId())) {
                                     childList.add(new TitleChild(subjectProgress));
-                                    subjectProgresses.add(subjectProgress);
                                     titleParent.setChildObjectList(childList);
+                                    break;
                                 }
                             }
                         }
@@ -147,32 +185,43 @@ public class HometasksFragment extends Fragment implements OnItemClickListener {
 
     @Override
     public void onClick(int position) {
-        SubjectProgress subjectProgress = subjectProgresses.get(position);
-        String subjectId = subjectProgress.getSubjectId();
-        int rate = subjectProgress.getRate();
+        // fix bug (get child position)
+        if (position - 1 != titleParents.size()) {
+            TitleParent titleParent = titleParents.get(position - 1);
+            TitleChild titleChild = (TitleChild) titleParent.getChildObjectList().get(0);
+            SubjectProgress subjectProgress = titleChild.getSubjectProgress();
 
-        mDatabaseHomeworks.child(subjectId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("Subject ID:", subjectId);
-                for (DataSnapshot homeworkSnapshot : dataSnapshot.getChildren()) {
-                    Homework homework = homeworkSnapshot.getValue(Homework.class);
-                    if (homework != null) {
-                        String endDate = homework.getEndDate();
-                        String timeStamp = new SimpleDateFormat("yyyy/M/dd").format(Calendar.getInstance().getTime());
-                        if (endDate.compareTo(timeStamp) < 0) {
-                            continue;
+            String subjectName = titleParent.getSubject().getName();
+            String subjectId = subjectProgress.getSubjectId();
+
+            int rate = subjectProgress.getRate();
+
+            mDatabaseHomeworks.child(subjectId).addListenerForSingleValueEvent(new ValueEventListener() {
+                int count = 0;
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.d("Subject ID:", subjectId);
+                    for (DataSnapshot homeworkSnapshot : dataSnapshot.getChildren()) {
+                        Homework homework = homeworkSnapshot.getValue(Homework.class);
+                        if (homework != null) {
+                            count++;
+                            String endDate = homework.getEndDate();
+                            String timeStamp = new SimpleDateFormat("yyyy/M/dd").format(Calendar.getInstance().getTime());
+                            if (endDate.compareTo(timeStamp) < 0) {
+                                continue;
+                            }
+                            startActivity(FinishHomeworkActivity.makeInflatedIntent(getActivity(), homework, subjectId, rate, subjectName, count));
+                            break;
                         }
-                        startActivity(FinishHomeworkActivity.makeInflatedIntent(getActivity(), homework, subjectId, rate));
-                        break;
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
 }

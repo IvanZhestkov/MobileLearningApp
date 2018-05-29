@@ -3,6 +3,7 @@ package com.itis.android.mobilelearningapp.adapters;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,14 @@ public class HomeworkActivityAdapter extends RecyclerView.Adapter<HomeworkActivi
         Homework homework = homeworkList.get(position);
 
         String endDate = homework.getEndDate();
-        String timeStamp = new SimpleDateFormat("yyyy/M/dd").format(Calendar.getInstance().getTime());
-        if (endDate.compareTo(timeStamp) < 0) {
+        String currentTime = new SimpleDateFormat("yyyy/M/dd").format(Calendar.getInstance().getTime());
+        Log.d("dates compare1", endDate.compareTo(currentTime) + "");
+        Log.d("current date1", currentTime);
+        Log.d("end date1", endDate);
+        if (endDate.compareTo(currentTime) < 0) {
+            Log.d("dates compare", endDate.compareTo(currentTime) + "");
+            Log.d("current date", currentTime);
+            Log.d("end date", endDate);
             holder.hwDate.setPaintFlags(holder.hwDate.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             holder.hwTitle.setPaintFlags(holder.hwTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }

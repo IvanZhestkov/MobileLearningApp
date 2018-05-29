@@ -165,64 +165,6 @@ public class HomeworkActivity extends AppCompatActivity implements OnItemClickLi
         }
     }
 
-    private void updateList() {
-        mDatabaseHomeworks.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String subjectId = getIntent().getStringExtra(SUBJECT_ID);
-
-                Homework homework = dataSnapshot.getValue(Homework.class);
-                if (homework != null && homework.getSubjectId().equals(subjectId)) {
-                    homeworkList.add(homework);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Homework homework = dataSnapshot.getValue(Homework.class);
-
-                int index = getItemIndex(homework);
-
-                homeworkList.set(index, homework);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Homework homework = dataSnapshot.getValue(Homework.class);
-
-                int index = getItemIndex(homework);
-
-                homeworkList.remove(index);
-                adapter.notifyItemRemoved(index);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private int getItemIndex(Homework homework) {
-        int index = -1;
-
-        for (int i = 0; i < homeworkList.size(); i++) {
-            if (homeworkList.get(i).getId().equals(homework.getId())) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
-
     private void removeHomework(int position) {
         String subjectId = getIntent().getStringExtra(SUBJECT_ID);
         mDatabaseHomeworks.child(subjectId).child(homeworkList.get(position).getId()).removeValue();
@@ -238,12 +180,6 @@ public class HomeworkActivity extends AppCompatActivity implements OnItemClickLi
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setTitle("ДЗ" + "(" + subjectName + ")");
         }
-    }
-
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 
     private void initRecycler() {

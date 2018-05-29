@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -8,10 +7,17 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="AppSplashAndStartTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppSplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@android:color/white</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="AppStartTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/background_color</item>
         <item name="colorAccent">@color/accent</item>
     </style>
 

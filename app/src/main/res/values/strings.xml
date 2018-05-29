@@ -21,7 +21,7 @@
     <string name="next_btn">ДАЛЕЕ</string>
     <string name="start_btn">НАЧАТЬ РАБОТУ</string>
 
-    <string name="error_sign_in">Sign In Error</string>
+    <string name="error_sign_in">Ошибка входа</string>
     <string name="hint_email">Почта</string>
     <string name="hint_password">Пароль</string>
     <string name="btn_log_in">Войти</string>
@@ -48,33 +48,34 @@
     <integer name="card_flip_duration_full">1000</integer>
     <integer name="card_flip_duration_half">500</integer>
 
-    <string name="error_email">Enter email address!</string>
-    <string name="error_pass">Enter password!</string>
-    <string name="error_pass_length">Password too short, enter minimum 6 characters!</string>
-    <string name="status_registration_succeeded">Registration completed successfully</string>
-    <string name="status_log_in_succeeded">Sign In Success</string>
-    <string name="btn_to_reset_password">Reset Password</string>
-    <string name="reset_password_complete_msg">Password reset email was send. Check your email please!</string>
-    <string name="error">Error</string>
-    <string name="reset_your_password">Reset your password</string>
+    <string name="error_email">Введите электронную почту!</string>
+    <string name="error_pass">Введите пароль!</string>
+    <string name="error_pass_length">Пароль слишком короткий, введите минимум 6 символов!</string>
+    <string name="status_registration_succeeded">Регистрация прошла успешно</string>
+    <string name="status_log_in_succeeded">Вход выполнен успешно</string>
+    <string name="btn_to_reset_password">Сбросить пароль</string>
+    <string name="reset_password_complete_msg">Сообщение отправлено на почту!</string>
+    <string name="error">Ошибка</string>
+    <string name="reset_your_password">Сброс пароля</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_study">Study</string>
     <string name="nav_group">Group</string>
     <string name="edit_name">Редактировать</string>
     <string name="log_out">Выйти</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="my_statistics">my statistics</string>
+    <string name="my_statistics">Моя статистика</string>
     <string name="title_activity_homework">HomeworkActivity</string>
     <string name="add">Добавить</string>
     <string name="title_activity_add_homework">AddHomeworkActivity</string>
     <string name="confirm">Confirm</string>
-    <string name="enter_name_subj">Enter name subject</string>
+    <string name="enter_name_subj">Введите название предмета</string>
     <string name="title_activity_details_homework">DetailsHomeworkActivity</string>
 
-    <string name="title_description">Description:</string>
+    <string name="title_description">Описание:</string>
     <string name="title_activity_finish_homework">FinishHomeworkActivity</string>
     <string name="save">Сохранить</string>
+    <string name="no_internet">Нет подключения к интернету</string>
+    <string name="title_activity_student_progress">StudentProgressActivity</string>
 
 </resources>

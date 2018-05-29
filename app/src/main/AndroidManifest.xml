@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SplashActivity"
-            android:theme="@style/AppSplashAndStartTheme">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppSplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,28 +23,44 @@
         </activity>
         <activity
             android:name=".activities.instruction.StartActivity"
-            android:theme="@style/AppSplashAndStartTheme" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppStartTheme" />
         <activity
             android:name=".activities.auth.SignInAndSignUpActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".activities.main.MainActivity" />
-        <activity android:name=".activities.main.EditProfileActivity" />
+        <activity
+            android:name=".activities.main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.main.EditProfileActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.HomeworkActivity"
             android:label="@string/title_activity_homework"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.AddHomeworkActivity"
             android:label="@string/title_activity_add_homework"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.AddSubjectActivity" />
+        <activity
+            android:name=".activities.AddSubjectActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.DetailsHomeworkActivity"
             android:label="@string/title_activity_details_homework"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.FinishHomeworkActivity"
             android:label="@string/title_activity_finish_homework"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.StudentProgressActivity"
+            android:label="@string/title_activity_student_progress"
             android:theme="@style/AppTheme"></activity>
     </application>
 

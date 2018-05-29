@@ -23,26 +23,20 @@ public class SliderAdapter extends PagerAdapter {
 
     //Arrays
     public int[] slide_images = {
-            R.drawable.group10,
-            R.drawable.group11,
-            R.drawable.group12
-    };
-
-    public String[] slide_headings = {
-            "EAT",
-            "SLEEP",
-            "CODE"
+            R.drawable.group,
+            R.drawable.study,
+            R.drawable.profile
     };
 
     public String[] slide_descs = {
-            "Swap to the songs tab and touch the (⋮) sign which located at every songs right side , and choose Update Data",
-            "Swap to the songs tab and touch the (⋮) sign which located at every songs right side , and choose Update Data",
-            "Swap to the songs tab and touch the (⋮) sign which located at every songs right side , and choose Update Data"
+            "Отслеживание прогресса ваших одногруппников",
+            "Создание предметов и задач, заданные на изучение",
+            "Индивидуальный прогресс и фиксирование решенных задач"
     };
 
     @Override
     public int getCount() {
-        return slide_headings.length;
+        return slide_descs.length;
     }
 
     @Override
@@ -57,11 +51,9 @@ public class SliderAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
 
         ImageView slideImageView = view.findViewById(R.id.iv_slide);
-        TextView slideHeading = view.findViewById(R.id.tv_heading);
         TextView slideDescription = view.findViewById(R.id.tv_desc);
 
         slideImageView.setImageResource(slide_images[position]);
-        slideHeading.setText(slide_headings[position]);
         slideDescription.setText(slide_descs[position]);
 
         container.addView(view);

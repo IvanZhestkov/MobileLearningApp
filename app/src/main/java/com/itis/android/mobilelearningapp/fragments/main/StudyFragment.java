@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -73,11 +74,11 @@ public class StudyFragment extends Fragment implements OnItemClickListener {
         mDatabaseSubProgress = FirebaseDatabase.getInstance().getReference("SubjectProgress");
 
         //checkIfEmpty();
-
-        if (MainActivity.userr.getRole() == UserRole.ROLE_USER) {
-            btnAddSubject.setVisibility(View.INVISIBLE);
+        if (MainActivity.userr != null) {
+            if (MainActivity.userr.getRole() == UserRole.ROLE_USER) {
+                btnAddSubject.setVisibility(View.INVISIBLE);
+            }
         }
-
         return view;
     }
 
@@ -98,13 +99,7 @@ public class StudyFragment extends Fragment implements OnItemClickListener {
                 }
 
                 //checkIfEmpty();
-
-                layoutManager = new LinearLayoutManager(getActivity());
-                adapter = new StudyFragmentAdapter(subjects, StudyFragment.this);
-
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(adapter);
-                recyclerView.setHasFixedSize(true);
+                initRecycler();
             }
 
             @Override
@@ -160,6 +155,32 @@ public class StudyFragment extends Fragment implements OnItemClickListener {
             recyclerView.setVisibility(View.VISIBLE);
             emptyText.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void initRecycler() {
+        layoutManager = new LinearLayoutManager(getActivity());
+        adapter = new StudyFragmentAdapter(subjects, StudyFragment.this);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    btnAddSubject.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 || dy < 0 && btnAddSubject.isShown()) {
+                    btnAddSubject.hide();
+                }
+            }
+        });
     }
 
     private void initToolbar() {

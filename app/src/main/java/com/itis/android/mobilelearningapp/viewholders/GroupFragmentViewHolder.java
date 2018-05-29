@@ -8,15 +8,20 @@ import com.itis.android.mobilelearningapp.R;
 
 public class GroupFragmentViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView firstName;
+    public TextView userName;
 
-    public TextView lastName;
+    public TextView rate;
 
-    public GroupFragmentViewHolder(View itemView) {
+    public GroupFragmentViewHolder(View itemView, OnItemClickListener onItemClickListener) {
         super(itemView);
 
-        firstName = itemView.findViewById(R.id.tv_first_name);
+        userName = itemView.findViewById(R.id.tv_user_name);
+        rate = itemView.findViewById(R.id.tv_rate);
 
-        lastName = itemView.findViewById(R.id.tv_last_name);
+        itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onClick(getAdapterPosition());
+            }
+        });
     }
 }

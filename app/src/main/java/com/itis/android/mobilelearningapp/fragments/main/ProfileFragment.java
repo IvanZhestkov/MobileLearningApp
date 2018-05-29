@@ -46,12 +46,12 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        /*ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
         viewPagerAdapter.addFragment(HometasksFragment.newInstance(), "Hometasks");
         viewPagerAdapter.addFragment(SemestrFragment.newInstance(), "Semestr");
 
         viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);*/
     }
 
     private void initToolbar() {
@@ -63,7 +63,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initFields(View view) {
-        tabLayout = view.findViewById(R.id.tb_layout);
-        viewPager = view.findViewById(R.id.view_pager_fragment_profile);
+        //tabLayout = view.findViewById(R.id.tb_layout);
+        //viewPager = view.findViewById(R.id.view_pager_fragment_profile);
     }
 }
